@@ -1,6 +1,10 @@
 // far2cel.c - Печатает таблицы температур Целсий - Фаренгейт
 #include <stdio.h>
 
+#define LOWER 0 // Нижняя граница таблицы температур
+#define UPPER 300 // Верхняя граница таблицы температур
+#define STEP 20 // Шаг изменения температуры Цельсия
+
 int main()
 {
 	float fahr;
@@ -8,16 +12,9 @@ int main()
 
 	int lower, upper, step;
 
-	lower = 0; // Нижняя граница таблицы температур
-	upper = 300; // Верхняя граница таблицы температур
-	step = 20; // Шаг изменения температуры Цельсия
-
 	fahr = lower;
-	while (fahr <= upper) {
-		celcius = (5.0 / 9.0) * (fahr - 32.0);
-		printf("%3.0f\t%6.1f\n", fahr, celcius);
-		fahr = fahr + step;
-	}
+    for (fahr = LOWER; fahr <= UPPER; fahr = fahr + STEP) 
+		printf("%3.0f\t%6.1f\n", fahr, (5.0 / 9.0) * (fahr - 32.0));
 	
 	return 0;
 }
