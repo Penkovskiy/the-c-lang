@@ -6,12 +6,10 @@ int main()
     int c; // Переменная с имеет тип int
            // Чтобы иметь возможность Содержать значение
            // EOF
-    c = getchar();
+    
 
-    while (c != EOF) { // End Of File
+    while ((c = getchar()) != EOF)  // End Of File
         puthcar(c);
-        c = getchar();
-    }
-
+    
     return 0;
 }
