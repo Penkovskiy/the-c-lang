@@ -14,12 +14,9 @@ int main()
 // Возводит n в степень base; (base >= 0
 int power(int n, int base)
 {
-    int i;
     int result;
 
-    result = 1;
-
-    for (i = 0; i < base; i++)
+    for (result = 1; base > 0; base--)
         result *= n;
     return result;
 }
