@@ -11,15 +11,23 @@ int main()
 {
     int len;
     int max_len;
+    int tmp; // Длина части строки 
     char line[MAXLINE];
     char longest[MAXLINE];
 
     max_len = 0;
-    while ((len = getline(line, MAXLINE)) > 0)
-        if (len > max_len) {
-            max_len = len;
-            copy(longest, line);
-        }
+    tmp = 0;
+
+    while ((tmp = getline(line, MAXLINE)) > 0) {
+        len += tmp;
+        if (tmp != MAXLINE - 1) {
+            if (len > max_len) {
+                 max_len = len;
+                 copy(longest, line); // Возможно будет скопированна не полная 
+                                      // строка
+             }
+            len = 0;
+    }
     if (max_len > 0)
         printf("%s", longest);
     return 0;
