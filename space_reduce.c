@@ -27,23 +27,19 @@ void space_reduce(char line[], char modify_line[])
 {
     int i;
     int next_index;
-    int has_space = 0;
+    int has_space;
 
     char c;
 
     for (i = next_index = 0; (c = line[i]) != '\0'; i++, next_index++) {
+        has_space = i > 0 && modify_line[next_index] == line[i] &&
+                    (modify_line[next_index - 1] == ' ' ||
+                      modify_line[next_index - 1] == '\t');
+        if (has_space)
+            while (line[i] == ' ' || line[i] == '\t') {
+                 i++;
+            }
         modify_line[next_index] = line[i];
-        while (line[i] == ' ' || line[i] == '\t') {
-            has_space = 1;
-            i++;
-        }
-        if (has_space) {
-            has_space = 0;
-            next_index++;
-            
-            modify_line[next_index++] = '\0';
-            modify_line[next_index] = line[i];
-        }
     }
     modify_line[next_index] = '\0';
 }
