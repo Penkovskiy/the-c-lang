@@ -3,42 +3,41 @@
 
 #define MAXLINE 1000 // Максимальный размер вводимой строки
 
-int getline(char linef[], int maxline);
-void copy(char to[], char from[]);
+int max; // длина максимальной из просмотренных строк
+char line[MAXLINE]; // текущая строка
+char longest[MAXLINE]; // Самая длинная строка
+
+int getline(void);
+void copy(void);
 
 
 int main()
 {
     int len;
-    int max_len;
-    int tmp; // Длина части строки 
-    char line[MAXLINE];
-    char longest[MAXLINE];
+    extern int max;
+    extern char longest[MAXLINE];
 
     max_len = 0;
-    tmp = 0;
 
-    while ((tmp = getline(line, MAXLINE)) > 0) {
-        len += tmp;
-        if (tmp != MAXLINE - 1) {
-            if (len > max_len) {
-                 max_len = len;
-                 copy(longest, line); // Возможно будет скопированна не полная 
+    while ((len = getline()) > 0) {
+            if (len > max) {
+                 max = len;
+                 copy(); // Возможно будет скопированна не полная 
                                       // строка
              }
-            len = 0;
     }
     if (max_len > 0)
         printf("%s", longest);
     return 0;
 }
 
-int getline(char line[], int maxlen)
+int getline(void)
 {
-    int len;
     int c;
+    int len
+    extern char line[];
 
-    for(len= 0; (c = getchar()) != EOF && c != '\n'; len++)
+    for(len= 0; len < MAXLINE - 1 && (c = getchar()) != EOF && c != '\n'; len++)
         line[len] = c;
     if (c == '\n') {
         line[len] = c;
@@ -49,9 +48,11 @@ int getline(char line[], int maxlen)
     return len;
 }
 
-void copy(char to[], char from[])
+void copy()
 {
     int i = 0;
+    extern char line[], longest[];
+
     while ((to[i] = from[i]) != '\0')
         ++i;
 }
