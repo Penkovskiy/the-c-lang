@@ -18,13 +18,25 @@ int max_int_size()
 }
 
 
+int min_int_size()
+{
+    int i;
+
+    for (i = -1; i > i * 2 ; i *= 2 ) 
+        ;
+
+    return i; // На знак бит уже не требуется 
+}
+
 
 int main()
 {
     printf("%d\n", max_int_size());
     printf("%d\n", INT_MAX);
 
-   return 0;
+    printf("%d\n", INT_MIN);
+    printf("%d\n", min_int_size());
+    return 0;
 }
 
 
