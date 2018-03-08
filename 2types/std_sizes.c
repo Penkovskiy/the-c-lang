@@ -28,6 +28,13 @@ int min_int_size()
     return i; // На знак бит уже не требуется 
 }
 
+double max_double_size()
+{
+    double i;
+    for (i = 1; i > i / 2; i *= 2)
+        ;
+    return i;
+}
 
 int main()
 {
@@ -36,6 +43,12 @@ int main()
 
     printf("%d\n", INT_MIN);
     printf("%d\n", min_int_size());
+
+
+    printf("%e\n", max_double_size());
+    printf("%e\n", DBL_MAX);
+
+
     return 0;
 }
 
