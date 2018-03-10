@@ -5,6 +5,9 @@ int strlen(char s[]);
 
 int is_leap_year(int year);
 
+int atoi(char s[]);
+
+
 // Enumeration constant - Константа перечисления
 enum booleab {NO, YES}; // Value in enum starts with 0
 
@@ -25,11 +28,16 @@ int main()
 
     int lim = 3;
 
+
+    assert(atoi("12345") == 12345);
+    assert(atoi("12345sdf") == 12345);
+    assert(atoi("012345") == 12345);
+
     assert(strlen("12345") == 5);
 
     // for loop without || and &&
-    for (i = 0; (i < lim - 1) == ((c = getchar()) != EOF) == (c != '\n'); i++)
-        printf("%c\n", c);
+    // for (i = 0; (i < lim - 1) == ((c = getchar()) != EOF) == (c != '\n'); i++)
+       //  printf("%c\n", c);
 }
 
 
@@ -48,6 +56,17 @@ int is_leap_year(int year)
     return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
 }
 
+
+int atoi(char s[])
+{
+    int i;
+    int n;
+
+    n = 0;
+    for (i = 0; s[i] >= '0' && s[i] <= '9'; i++)
+        n = 10 * n + (s[i] - '0');
+    return n;
+}
 
 
 
