@@ -7,6 +7,7 @@ int is_leap_year(int year);
 
 int atoi(char s[]);
 
+int lower(int c);
 
 // Enumeration constant - Константа перечисления
 enum booleab {NO, YES}; // Value in enum starts with 0
@@ -28,6 +29,9 @@ int main()
 
     int lim = 3;
 
+    assert(lower('a') == 'A');
+    assert(lower('T') == 'T');
+    assert(lower(';') == ';');
 
     assert(atoi("12345") == 12345);
     assert(atoi("12345sdf") == 12345);
@@ -69,6 +73,12 @@ int atoi(char s[])
 }
 
 
+int lower(int c)
+{
+    if (c >= 'a' && c <= 'z')
+        return c + 'A' - 'a';
+    return c;
+}
 
 
 
