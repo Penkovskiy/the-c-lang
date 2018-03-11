@@ -7,10 +7,13 @@ int is_leap_year(int year);
 
 int atoi(char s[]);
 
+int upper(int c);
+
 int lower(int c);
 
 int rand(void);
 void srand(unsigned int seed);
+
 
 // Enumeration constant - Константа перечисления
 enum booleab {NO, YES}; // Value in enum starts with 0
@@ -32,9 +35,15 @@ int main()
 
     int lim = 3;
 
-    assert(lower('a') == 'A');
-    assert(lower('T') == 'T');
+    assert(upper('a') == 'A');
+    assert(upper('T') == 'T');
+    assert(upper(';') == ';');
+
+
+    assert(lower('A') == 'a');
+    assert(lower('a') == 'a');
     assert(lower(';') == ';');
+
 
     assert(atoi("12345") == 12345);
     assert(atoi("12345sdf") == 12345);
@@ -77,10 +86,18 @@ int atoi(char s[])
 }
 
 
-int lower(int c)
+int upper(int c)
 {
     if (c >= 'a' && c <= 'z')
         return c + 'A' - 'a';
+    return c;
+}
+
+
+int lower(int c)
+{
+    if (c >= 'A' && c <= 'Z')
+        return c - 'A' + 'a';
     return c;
 }
 
@@ -98,12 +115,4 @@ void srand(unsigned int seed)
 {
     next = seed;
 }
-
-
-
-
-
-
-
-
 
