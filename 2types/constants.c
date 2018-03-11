@@ -14,6 +14,7 @@ int lower(int c);
 int rand(void);
 void srand(unsigned int seed);
 
+long htol(char s[]);
 
 // Enumeration constant - Константа перечисления
 enum booleab {NO, YES}; // Value in enum starts with 0
@@ -34,6 +35,11 @@ int main()
     int c;
 
     int lim = 3;
+
+    assert(htol("0x3") == 3);
+    assert(htol("0xa") == 10);
+    assert(htol("0x13") == 19);
+    assert(htol("0xff") == 255);
 
     assert(upper('a') == 'A');
     assert(upper('T') == 'T');
@@ -115,4 +121,43 @@ void srand(unsigned int seed)
 {
     next = seed;
 }
+
+int is_hex(char c) 
+{
+    return (c >= '0' && c <= '9') || (lower(c) >= 'a' && lower(c) <= 'f');
+}
+int hex2i(char i)
+{
+    if (i >= '0' && i <= '9')
+        return i - '0';
+    return 10 + lower(i) - 'a';
+}
+
+// Exercise 2.3 hex to long
+long htol(char s[])
+{
+    long i;
+    int n;
+
+    if (s[0] != '0')
+        return -1;
+    if (lower(s[1]) != 'x')
+        return -1;
+        
+    n = 0;
+    for (i = 2; is_hex(s[i]); i++)
+        n = n * 16 + hex2i(s[i]);
+    return n;
+}
+
+
+
+
+
+
+
+
+
+
+
 
