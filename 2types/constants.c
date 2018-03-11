@@ -9,6 +9,9 @@ int atoi(char s[]);
 
 int lower(int c);
 
+int rand(void);
+void srand(unsigned int seed);
+
 // Enumeration constant - Константа перечисления
 enum booleab {NO, YES}; // Value in enum starts with 0
 
@@ -38,6 +41,7 @@ int main()
     assert(atoi("012345") == 12345);
 
     assert(strlen("12345") == 5);
+
 
     // for loop without || and &&
     // for (i = 0; (i < lim - 1) == ((c = getchar()) != EOF) == (c != '\n'); i++)
@@ -79,6 +83,23 @@ int lower(int c)
         return c + 'A' - 'a';
     return c;
 }
+
+unsigned long int next = 1;
+
+// rand -- return random num 0..32767
+int rand(void)
+{
+    next = next * 1103515245 + 1235;
+    return (unsigned int) (next / 65536) % 32768;
+}
+
+// srand: set seed for rand()
+void srand(unsigned int seed)
+{
+    next = seed;
+}
+
+
 
 
 
