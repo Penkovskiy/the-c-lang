@@ -26,13 +26,35 @@ void strcat(char s[], char t[])
         ;
 }
 
+// return c index in str or -1
+int index(char str[], int c)
+{
+    int i;
+    for (i = 0; str[i] != '\0'; i++)
+        if (str[i] == c)
+            return i;
+    return -1;
+}
+
+void squeeze2(char s[], char t[])
+{
+    int i;
+    
+    int j;
+    j = 0;
+    for (i = 0; s[i] != '\0'; i++)
+        if (index(t, s[i]) == -1)
+            s[j++] = s[i];
+    s[j] = '\0';
+}
+
 int main()
 {
     char str[100] = "Hello, ";
     char end[] = "World";
 
-    strcat(str, end);
-    printf("%s\n", str);
+    squeeze2(str, end);
+    printf("%s\n", str); // He,
 }
 
 
