@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <assert.h>
 
 // squeeze: Удаляет все с из s
 void squeeze(char s[], int c)
@@ -48,10 +49,30 @@ void squeeze2(char s[], char t[])
     s[j] = '\0';
 }
 
+// Если в строках ести одинаковые символы
+// возвращает позицию первого соврадения из s
+// Иначе -1
+int any(char s[], char t[])
+{
+    int i;
+    i = 0;
+    while (s[i] != '\0') {
+        if (index(t, s[i]) != -1)
+            return i;
+        i++;
+    }
+    return -1;
+}
+
+
 int main()
 {
     char str[100] = "Hello, ";
     char end[] = "World";
+
+    assert(any("Hello", "World") == 2);
+    assert(any("Hello", "qwrty") == -1);
+    assert(any("Hello", "") == -1);
 
     squeeze2(str, end);
     printf("%s\n", str); // He,
