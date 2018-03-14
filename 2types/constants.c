@@ -102,9 +102,7 @@ int upper(int c)
 
 int lower(int c)
 {
-    if (c >= 'A' && c <= 'Z')
-        return c - 'A' + 'a';
-    return c;
+    return (c >= 'A' && c <= 'Z') ? (c - 'A' + 'a') : c;
 }
 
 unsigned long int next = 1;
