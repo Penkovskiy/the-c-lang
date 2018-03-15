@@ -16,3 +16,21 @@ int main()
     return 0;
 }
 
+int binsearch(int target, int v[], int len)
+{
+    int low = 0;
+    int hight = len - 1;
+    int middle;
+
+    while (low <= hight) {
+        middle = (low + hight) / 2;
+        if (v[middle] == target)
+            return middle;
+        else if (target > v[middle])
+            low = middle + 1;
+        else 
+            hight = middle - 1;
+    }
+    return -1;
+}
+
