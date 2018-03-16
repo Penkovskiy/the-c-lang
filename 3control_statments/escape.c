@@ -59,5 +59,30 @@ void escape(char from[], char to[])
 
 void unescape(char from[], char to[])
 {
+    int i;
+    int j;
 
+    for (i = j = 0; from[i] != '\0'; i++) {
+        if (from[i] == '\\') {
+            i++;
+            switch (from[i]) {
+                case '\\':
+                    to[j++] = '\\';
+                    break;
+                case 'n':
+                    to[j++] = '\n';
+                    break;
+                case 't':
+                    to[j++] = '\t';
+                    break;
+                default:
+                    to[j++] = '\\';
+                    to[j++] = from[i];
+                    break;
+            }
+        }
+        else 
+            to[j++] = from[i];
+    }
+    to[j] = from[i]; // '\0'
 }
