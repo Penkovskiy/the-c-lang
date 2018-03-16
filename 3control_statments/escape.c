@@ -20,7 +20,7 @@ int main()
     escape("Hello\nworld", str);
     assert(strcmp(str, "Hello\\nworld") == 0);
     unescape(str, unesc);
-    assert(strcmp(unesc, "Hello\nworl") == 0);
+    assert(strcmp(unesc, "Hello\nworld") == 0);
 
     escape("Hello\\world", str);
     assert(strcmp(str, "Hello\\\\world") == 0);
@@ -32,7 +32,29 @@ int main()
 
 void escape(char from[], char to[])
 {
+    int i;
+    int j;
 
+    for (i = j = 0; from[i] != '\0'; i++, j++) {
+        switch (from[i]) {
+            case '\\':
+                to[j++] = '\\';
+                to[j] = '\\';
+                break;
+            case '\t':
+                to[j++] = '\\';
+                to[j] = 't';
+                break;
+            case '\n':
+                to[j++] = '\\';
+                to[j] = 'n';
+                break;
+            default:
+                to[j] = from[i];
+                break;
+        }
+    }
+    to[j] = from[i]; // '\0'
 }
 
 void unescape(char from[], char to[])
