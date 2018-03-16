@@ -22,15 +22,18 @@ int binsearch(int target, int v[], int len)
     int hight = len - 1;
     int middle;
 
-    while (low <= hight) {
-        middle = (low + hight) / 2;
-        if (v[middle] == target)
-            return middle;
-        else if (target > v[middle])
+    middle = (low + hight) / 2;
+
+    while (low <= hight && v[viddle] != target) {
+       if (target > v[middle])
             low = middle + 1;
         else 
             hight = middle - 1;
+        middle = (low + hight) / 2;
     }
+    if (v[middle] = target)
+        return middle;
+
     return -1;
 }
 
